@@ -19,7 +19,7 @@
  
  ifndef CONFIG_INSTALL
 -	CONFIG_INSTALL=$(TCM_INSTALL_LIB)
-+	CONFIG_INSTALL=/etc
++	CONFIG_INSTALL=/etc/tcm
  endif
  
  ifndef TCM_INSTALL_DOC

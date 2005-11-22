@@ -68,9 +68,6 @@ design tasks. These editors can be categorized into:
 
 %install
 rm -rf $RPM_BUILD_ROOT
-# create directories if necessary
-#install -d $RPM_BUILD_ROOT
-#install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
@@ -82,7 +79,9 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc CHANGELOG FILEMAP README
+%doc usersguide* wishlist
 %attr(755,root,root) %{_bindir}/*
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/*
 %dir %{_datadir}/%{name}
 %dir %{_datadir}/%{name}/help
 %{_datadir}/%{name}/help/[D-Z]*

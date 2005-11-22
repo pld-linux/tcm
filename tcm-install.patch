@@ -1,0 +1,136 @@
+--- tcm-2.20/Makefile.orig	2003-01-20 13:32:37.000000000 +0100
++++ tcm-2.20/Makefile	2005-11-22 23:10:03.653237184 +0100
+@@ -4,7 +4,7 @@
+ 
+ # change this if you want to install it in a different place
+ ifndef $(TCM_INSTALL_DIR)
+-	TCM_INSTALL_DIR=/opt/tcm
++	TCM_INSTALL_DIR=/usr
+ endif
+ 
+ # the current version.
+@@ -16,23 +16,23 @@
+ 
+ 
+ ifndef TCM_INSTALL_LIB
+-	TCM_INSTALL_LIB=$(TCM_INSTALL_DIR)/lib/
++	TCM_INSTALL_LIB=$(TCM_INSTALL_DIR)/share/tcm
+ endif
+ 
+ ifndef CONFIG_INSTALL
+-	CONFIG_INSTALL=$(TCM_INSTALL_LIB)
++	CONFIG_INSTALL=/etc
+ endif
+ 
+ ifndef TCM_INSTALL_DOC
+-	TCM_INSTALL_DOC=$(TCM_INSTALL_DIR)/doc/
++	TCM_INSTALL_DOC=$(TCM_INSTALL_DIR)/share/doc/tcm
+ endif
+ 
+ ifndef TCM_INSTALL_SHARE
+-	TCM_INSTALL_SHARE=$(TCM_INSTALL_LIB)
++	TCM_INSTALL_SHARE=$(TCM_INSTALL_DIR)/share/tcm
+ endif
+ 
+ ifndef TCM_INSTALL_MAN
+-	TCM_INSTALL_MAN=$(TCM_INSTALL_DIR)/man/
++	TCM_INSTALL_MAN=$(TCM_INSTALL_DIR)/share/man/
+ endif
+ 
+ MFLAGS += TCM_INSTALL_DIR='$(TCM_INSTALL_DIR)' TCM_INSTALL_LIB='$(TCM_INSTALL_LIB)' CONFIG_INSTALL='$(CONFIG_INSTALL)' TCM_INSTALL_DOC='$(TCM_INSTALL_DOC)' TCM_COMPILER='$(TCM_COMPILER)' TCM_INSTALL_CMD='$(TCM_INSTALL_CMD)' TCM_HOME='$(TCM_COMPILE_DIR)' TCM_INSTALL_SHARE='$(TCM_INSTALL_SHARE)'
+@@ -129,15 +129,15 @@
+ 
+ install:
+ 	@echo making $@...
+-	if test ! -d $(TCM_INSTALL_DIR); then\
+-                mkdir -p $(TCM_INSTALL_DIR);\
+-                $(CHMOD) 755 $(TCM_INSTALL_DIR); fi
++	if test ! -d $(DESTDIR)$(TCM_INSTALL_DIR); then\
++                mkdir -p $(DESTDIR)$(TCM_INSTALL_DIR);\
++                $(CHMOD) 755 $(DESTDIR)$(TCM_INSTALL_DIR); fi
+ 	$(TCM_INSTALL_CMD) README CHANGELOG COPYING FILEMAP \
+-			INSTALL_ README.cygwin INSTALL.cygwin man $(TCM_INSTALL_DIR)
+-	if test ! -d $(TCM_INSTALL_MAN); then\
+-		mkdir -p $(TCM_INSTALL_MAN);\
+-		$(CHMOD) 755 $(TCM_INSTALL_MAN); fi
+-	$(TCM_INSTALL_CMD) man/* $(TCM_INSTALL_MAN)
++			INSTALL_ README.cygwin INSTALL.cygwin man $(DESTDIR)$(TCM_INSTALL_DIR)
++	if test ! -d $(DESTDIR)$(TCM_INSTALL_MAN); then\
++		mkdir -p $(DESTDIR)$(TCM_INSTALL_MAN);\
++		$(CHMOD) 755 $(DESTDIR)$(TCM_INSTALL_MAN); fi
++	$(TCM_INSTALL_CMD) man/* $(DESTDIR)$(TCM_INSTALL_MAN)
+ 	for dir in $(SUBDIRS); do \
+ 		(cd $${dir}; ${MAKE} $(MFLAGS) $@); done
+ 	@echo done making $@...
+--- tcm-2.20/bin/Makefile~	2003-01-20 13:32:37.000000000 +0100
++++ tcm-2.20/bin/Makefile	2005-11-22 23:10:21.631504072 +0100
+@@ -7,11 +7,11 @@
+ install:
+ 	@if test $(TCM_COMPILER) = gcc; then\
+ 		TCM_HOME=$(TCM_HOME) ./linkx; fi
+-	if test ! -d $(TCM_INSTALL_BIN); then\
+-                mkdir -p $(TCM_INSTALL_BIN);\
+-                $(CHMOD) 755 $(TCM_INSTALL_BIN); \
++	if test ! -d $(DESTDIR)$(TCM_INSTALL_BIN); then\
++                mkdir -p $(DESTDIR)$(TCM_INSTALL_BIN);\
++                $(CHMOD) 755 $(DESTDIR)$(TCM_INSTALL_BIN); \
+ 		fi
+-	$(TCM_INSTALL_CMD) psf t* $(TCM_INSTALL_BIN)
++	$(TCM_INSTALL_CMD) psf t* $(DESTDIR)$(TCM_INSTALL_BIN)
+ 
+ clean:
+ 	$(RM) t* c*
+--- tcm-2.20/doc/Makefile~	2003-01-20 13:32:37.000000000 +0100
++++ tcm-2.20/doc/Makefile	2005-11-22 23:10:58.245937832 +0100
+@@ -30,16 +30,16 @@
+  
+ 
+ install:
+-	if test ! -d $(TCM_INSTALL_DOC); then\
+-		mkdir -p $(TCM_INSTALL_DOC);\
+-		chmod 755 $(TCM_INSTALL_DOC);\
+-		mkdir -p $(TCM_INSTALL_DOC)/usersguide;\
+-		chmod 755 $(TCM_INSTALL_DOC)/usersguide; fi
++	if test ! -d $(DESTDIR)$(TCM_INSTALL_DOC); then\
++		mkdir -p $(DESTDIR)$(TCM_INSTALL_DOC);\
++		chmod 755 $(DESTDIR)$(TCM_INSTALL_DOC);\
++		mkdir -p $(DESTDIR)$(TCM_INSTALL_DOC)/usersguide;\
++		chmod 755 $(DESTDIR)$(TCM_INSTALL_DOC)/usersguide; fi
+ 	chmod 644 index.html usersguide/*.*
+ 	$(TCM_INSTALL_CMD) usersguide*.pdf.gz usersguide*.ps.gz index.html \
+-			usersguide.html wishlist $(TCM_INSTALL_DOC)
++			usersguide.html wishlist $(DESTDIR)$(TCM_INSTALL_DOC)
+ 	$(TCM_INSTALL_CMD) usersguide/*.html usersguide/*.gif \
+-			usersguide/*.css $(TCM_INSTALL_DOC)/usersguide
++			usersguide/*.css $(DESTDIR)$(TCM_INSTALL_DOC)/usersguide
+ 
+ 
+ docxx classdoc techdoc userdoc:
+--- tcm-2.20/lib/Makefile~	2003-01-20 13:32:37.000000000 +0100
++++ tcm-2.20/lib/Makefile	2005-11-22 23:11:45.824704760 +0100
+@@ -3,16 +3,16 @@
+ config:
+ 
+ install:
+-	if test ! -d $(TCM_INSTALL_LIB) -o ! -d $(TCM_INSTALL_SHARE) -o ! -d $(CONFIG_INSTALL); then\
+-                mkdir -p $(TCM_INSTALL_SHARE);\
+-                mkdir -p $(CONFIG_INSTALL);\
+-                $(CHMOD) 755 $(TCM_INSTALL_SHARE) $(CONFIG_INSTALL); fi
+-	$(TCM_INSTALL_CMD) TCM banner.ps colorrgb.txt tcm.conf $(CONFIG_INSTALL)
+-	$(TCM_INSTALL_CMD) help $(TCM_INSTALL_SHARE)
++	if test ! -d $(DESTDIR)$(TCM_INSTALL_LIB) -o ! -d $(DESTDIR)$(TCM_INSTALL_SHARE) -o ! -d $(DESTDIR)$(CONFIG_INSTALL); then\
++                mkdir -p $(DESTDIR)$(TCM_INSTALL_SHARE);\
++                mkdir -p $(DESTDIR)$(CONFIG_INSTALL);\
++                $(CHMOD) 755 $(DESTDIR)$(TCM_INSTALL_SHARE) $(DESTDIR)$(CONFIG_INSTALL); fi
++	$(TCM_INSTALL_CMD) TCM banner.ps colorrgb.txt tcm.conf $(DESTDIR)$(CONFIG_INSTALL)
++	$(TCM_INSTALL_CMD) help $(DESTDIR)$(TCM_INSTALL_SHARE)
+ 	if test -f libglobal.so; then\
+-                mkdir -p $(TCM_INSTALL_LIB);\
+-		$(CHMOD) 755 $(TCM_INSTALL_LIB);\
+-		$(TCM_INSTALL_CMD) lib*.so $(TCM_INSTALL_LIB);\
++                mkdir -p $(DESTDIR)$(TCM_INSTALL_LIB);\
++		$(CHMOD) 755 $(DESTDIR)$(TCM_INSTALL_LIB);\
++		$(TCM_INSTALL_CMD) lib*.so $(DESTDIR)$(TCM_INSTALL_LIB);\
+ 	fi
+ clean:
+ 	$(RM) lib*.so

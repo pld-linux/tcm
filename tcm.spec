@@ -1,7 +1,7 @@
 Summary:	A suite of graphical editors for diagrams and tables
 Name:		tcm
 Version:	2.20
-Release:	0.1
+Release:	1
 License:	GPL
 Group:		Development/Tools
 Source0:	ftp://ftp.cs.utwente.nl/pub/tcm/%{name}-%{version}.src.tar.gz
@@ -10,17 +10,11 @@ Patch0:		%{name}-shared.patch
 Patch1:		%{name}-opt.patch
 Patch2:		%{name}-install.patch
 Patch3:		%{name}-text2ps.patch
+Patch4:		%{name}-fonts.patch
 URL:		http://wwwhome.cs.utwente.nl/~tcm/
-# don't use lesstif here, as it's known to cause problems
 BuildRequires:	X11-devel
+# don't use lesstif here, as it's known to cause problems
 BuildRequires:	openmotif-devel
-#BuildRequires:	autoconf
-#BuildRequires:	automake
-#BuildRequires:	libtool
-#Requires(postun):	-
-#Requires(pre,post):	-
-#Requires(preun):	-
-#Requires:	-
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -52,6 +46,7 @@ design tasks. These editors can be categorized into:
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 %{__make} config \
@@ -73,13 +68,16 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	TCM_INSTALL_DIR=%{_prefix}
 
+# silence rpm
+rm -rf $RPM_BUILD_ROOT%{_datadir}/doc/tcm
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
 %doc CHANGELOG FILEMAP README
-%doc usersguide* wishlist
+%doc doc/usersguide* doc/wishlist
 %attr(755,root,root) %{_bindir}/*
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/*
 %dir %{_datadir}/%{name}

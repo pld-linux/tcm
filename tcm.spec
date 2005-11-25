@@ -1,4 +1,5 @@
 Summary:	A suite of graphical editors for diagrams and tables
+Summary(pl):	Zestaw graficznych edytorów do diagramów i tabel
 Name:		tcm
 Version:	2.20
 Release:	1
@@ -39,6 +40,28 @@ design tasks. These editors can be categorized into:
   diagrams, use-case diagrams, activity diagrams, state charts,
   message sequence diagrams, collaboration diagrams, component
   diagrams and deployment diagrams.
+
+%description -l pl
+TCM (Toolkit for Conceptual Modeling) to zbiór programów narzêdziowych
+do prezentacji modeli koncepcyjnych systemów programowych w postaci
+diagramów, tabel, drzew itp. Model koncepcyjny systemu to struktura
+maj±ca reprezentowaæ wymagania lub architekturê systemu. TCM ma s³u¿yæ
+do okre¶lania i utrzymywania wymagañ danych systemów, w których
+u¿ywane jest wiele technik i heurystyk do analizy problemu,
+ulepszania funkcji, okre¶lania zachowania i okre¶lania architektury.
+TCM przyjmuje postaæ zestawu graficznych edytorów, których mo¿na
+u¿ywaæ do tych zadañ projektowych. Edytory te mo¿na podzieliæ na:
+
+- edytory ogólne do ogólnych diagramów, ogólnych tabel i ogólnych
+  drzew,
+- edytory do analizy strukturalnej (SA - Structured Analysis) dla
+  diagramów entity-relationship, diagramów przep³ywu danych i zdarzeñ,
+  diagramów przej¶æ stanów, drzew ulepszania funkcji, tabel
+  transaction use oraz function-entity
+- edytory UML (Unified Modeling Language) dla diagramów struktur
+  statycznych, diagramów przypadków u¿ycia, diagramów aktywno¶ci,
+  wykresów stanów, diagramów sekwencji komunikatów, diagramów
+  wspó³pracy, diagramów sk³adników i diagramów wdra¿ania.
 
 %prep
 %setup -q

@@ -14,6 +14,7 @@ Patch3:		%{name}-text2ps.patch
 Patch4:		%{name}-fonts.patch
 URL:		http://wwwhome.cs.utwente.nl/~tcm/
 BuildRequires:	X11-devel
+BuildRequires:	libstdc++-devel
 # don't use lesstif here, as it's known to cause problems
 BuildRequires:	openmotif-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)

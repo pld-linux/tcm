@@ -1,5 +1,5 @@
 Summary:	A suite of graphical editors for diagrams and tables
-Summary(pl.UTF-8):   Zestaw graficznych edytorów do diagramów i tabel
+Summary(pl.UTF-8):	Zestaw graficznych edytorów do diagramów i tabel
 Name:		tcm
 Version:	2.20
 Release:	1

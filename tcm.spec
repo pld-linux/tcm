@@ -1,5 +1,5 @@
 Summary:	A suite of graphical editors for diagrams and tables
-Summary(pl):	Zestaw graficznych edytorów do diagramów i tabel
+Summary(pl.UTF-8):   Zestaw graficznych edytorÃ³w do diagramÃ³w i tabel
 Name:		tcm
 Version:	2.20
 Release:	1
@@ -42,27 +42,27 @@ design tasks. These editors can be categorized into:
   message sequence diagrams, collaboration diagrams, component
   diagrams and deployment diagrams.
 
-%description -l pl
-TCM (Toolkit for Conceptual Modeling) to zbiór programów narzêdziowych
-do prezentacji modeli koncepcyjnych systemów programowych w postaci
-diagramów, tabel, drzew itp. Model koncepcyjny systemu to struktura
-maj±ca reprezentowaæ wymagania lub architekturê systemu. TCM ma s³u¿yæ
-do okre¶lania i utrzymywania wymagañ danych systemów, w których
-u¿ywane jest wiele technik i heurystyk do analizy problemu,
-ulepszania funkcji, okre¶lania zachowania i okre¶lania architektury.
-TCM przyjmuje postaæ zestawu graficznych edytorów, których mo¿na
-u¿ywaæ do tych zadañ projektowych. Edytory te mo¿na podzieliæ na:
+%description -l pl.UTF-8
+TCM (Toolkit for Conceptual Modeling) to zbiÃ³r programÃ³w narzÄ™dziowych
+do prezentacji modeli koncepcyjnych systemÃ³w programowych w postaci
+diagramÃ³w, tabel, drzew itp. Model koncepcyjny systemu to struktura
+majÄ…ca reprezentowaÄ‡ wymagania lub architekturÄ™ systemu. TCM ma sÅ‚uÅ¼yÄ‡
+do okreÅ›lania i utrzymywania wymagaÅ„ danych systemÃ³w, w ktÃ³rych
+uÅ¼ywane jest wiele technik i heurystyk do analizy problemu,
+ulepszania funkcji, okreÅ›lania zachowania i okreÅ›lania architektury.
+TCM przyjmuje postaÄ‡ zestawu graficznych edytorÃ³w, ktÃ³rych moÅ¼na
+uÅ¼ywaÄ‡ do tych zadaÅ„ projektowych. Edytory te moÅ¼na podzieliÄ‡ na:
 
-- edytory ogólne do ogólnych diagramów, ogólnych tabel i ogólnych
+- edytory ogÃ³lne do ogÃ³lnych diagramÃ³w, ogÃ³lnych tabel i ogÃ³lnych
   drzew,
 - edytory do analizy strukturalnej (SA - Structured Analysis) dla
-  diagramów entity-relationship, diagramów przep³ywu danych i zdarzeñ,
-  diagramów przej¶æ stanów, drzew ulepszania funkcji, tabel
+  diagramÃ³w entity-relationship, diagramÃ³w przepÅ‚ywu danych i zdarzeÅ„,
+  diagramÃ³w przejÅ›Ä‡ stanÃ³w, drzew ulepszania funkcji, tabel
   transaction use oraz function-entity
-- edytory UML (Unified Modeling Language) dla diagramów struktur
-  statycznych, diagramów przypadków u¿ycia, diagramów aktywno¶ci,
-  wykresów stanów, diagramów sekwencji komunikatów, diagramów
-  wspó³pracy, diagramów sk³adników i diagramów wdra¿ania.
+- edytory UML (Unified Modeling Language) dla diagramÃ³w struktur
+  statycznych, diagramÃ³w przypadkÃ³w uÅ¼ycia, diagramÃ³w aktywnoÅ›ci,
+  wykresÃ³w stanÃ³w, diagramÃ³w sekwencji komunikatÃ³w, diagramÃ³w
+  wspÃ³Å‚pracy, diagramÃ³w skÅ‚adnikÃ³w i diagramÃ³w wdraÅ¼ania.
 
 %prep
 %setup -q

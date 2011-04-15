@@ -12,7 +12,15 @@ Patch1:		%{name}-opt.patch
 Patch2:		%{name}-install.patch
 Patch3:		%{name}-text2ps.patch
 Patch4:		%{name}-fonts.patch
+Patch5:		%{name}-gcc4.patch
+Patch6:		%{name}-missing-sentinel.patch
+Patch7:		%{name}-export-png.patch
+Patch8:		%{name}-gv-preview.patch
+Patch9:		%{name}-quote-system-call.patch
+Patch10:	%{name}-flex.patch
+Patch100:	%{name}-TSQD.patch
 URL:		http://wwwhome.cs.utwente.nl/~tcm/
+BuildRequires:	flex
 BuildRequires:	libstdc++-devel
 # don't use lesstif here, as it's known to cause problems
 BuildRequires:	openmotif-devel
@@ -70,29 +78,36 @@ używać do tych zadań projektowych. Edytory te można podzielić na:
 
 %prep
 %setup -q
+%patch100 -p1
 %patch0 -p0
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
+%patch6 -p1
+%patch7 -p1
+%patch8 -p1
+%patch9 -p1
+%patch10 -p1
 
 %build
-%{__make} config \
+%{__make} -j1 config \
 	OPTFLAGS="%{rpmcflags}" \
 	TCM_INSTALL_DIR=%{_prefix}
 
-%{__make} depend \
+%{__make} -j1 depend \
 	OPTLAGS="%{rpmcflags}" \
 	TCM_INSTALL_DIR=%{_prefix}
 
-%{__make} execs \
+%{__make} -j1 execs \
 	OPTFLAGS="%{rpmcflags}" \
 	TCM_INSTALL_DIR=%{_prefix}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
+%{__make} -j1 install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	TCM_INSTALL_DIR=%{_prefix}
 

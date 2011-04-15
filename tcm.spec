@@ -2,7 +2,7 @@ Summary:	A suite of graphical editors for diagrams and tables
 Summary(pl.UTF-8):	Zestaw graficznych edytorów do diagramów i tabel
 Name:		tcm
 Version:	2.20
-Release:	1
+Release:	2
 License:	GPL
 Group:		Development/Tools
 Source0:	ftp://ftp.cs.utwente.nl/pub/tcm/%{name}-%{version}.src.tar.gz
@@ -13,10 +13,14 @@ Patch2:		%{name}-install.patch
 Patch3:		%{name}-text2ps.patch
 Patch4:		%{name}-fonts.patch
 URL:		http://wwwhome.cs.utwente.nl/~tcm/
-BuildRequires:	X11-devel
 BuildRequires:	libstdc++-devel
 # don't use lesstif here, as it's known to cause problems
 BuildRequires:	openmotif-devel
+BuildRequires:	xorg-lib-libXt-devel
+BuildRequires:	xorg-lib-libX11-devel
+BuildRequires:	xorg-lib-libXext-devel
+BuildRequires:	xorg-lib-libSM-devel
+BuildRequires:	xorg-lib-libICE-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description

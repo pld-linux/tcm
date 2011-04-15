@@ -1,0 +1,16 @@
+## 12_quote_system_call.dpatch by Otavio Salvador <otavio@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Ensure that the argument is ocrrectly quoted (#198001)
+diff -urNad /home/otavio/devel/debian/tcm/tcm-2.20/src/ed/startupwindow.c tcm-2.20/src/ed/startupwindow.c
+--- /home/otavio/devel/debian/tcm/tcm-2.20/src/ed/startupwindow.c	2003-07-03 19:29:00.000000000 -0300
++++ tcm-2.20/src/ed/startupwindow.c	2003-07-03 19:30:31.000000000 -0300
+@@ -429,7 +429,7 @@
+ }
+ 
+ void StartupWindow::AppendProjDir(string *command) {
+-	*command += " -projdir " + projDir;
++	*command += " -projdir \"" + projDir + "\"";
+ }
+ 
+ void StartupWindow::AppendDrawingArea(string *command) {

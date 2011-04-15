@@ -1,0 +1,31 @@
+## 16_gv_preview.dpatch by Otavio Salvador <otavio@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Fix gv preview params
+--- tcm-2.20+TSQD.orig/src/ed/printer.c
++++ tcm-2.20+TSQD/src/ed/printer.c
+@@ -170,7 +170,7 @@
+ 	char tmp[MAXNAME];
+ 	System::GiveFile(previewCommand.getstr(), tmp);
+ 	string command = tmp;
+-	if (command == "ghostview" || command == "gv") {
++	if (command == "ghostview") {
+ 		string pgs = "-";
+ 		string sz;
+ 		PageSize::Type2String(pageSize, &sz);
+@@ -181,6 +181,15 @@
+ 					"-portrait":"-landscape", 
+ 				psFileName.getstr());
+ 	}
++	else if (command == "gv") {
++		string sz;
++		PageSize::Type2String(pageSize, &sz);
++		sprintf(tmp, "%s --media=%s --orientation=%s %s 2>&1\n",
++				previewCommand.getstr(), sz.getstr(),
++				pageOrientation==Config::PORTRAIT?
++					"portrait":"landscape", 
++				psFileName.getstr());
++	}
+ 	else	// simplistic previewing ...
+ 		sprintf(tmp, "%s %s 2>&1\n", previewCommand.getstr(), 
+ 					     psFileName.getstr());

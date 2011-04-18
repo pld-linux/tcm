@@ -2,7 +2,7 @@ Summary:	A suite of graphical editors for diagrams and tables
 Summary(pl.UTF-8):	Zestaw graficznych edytorów do diagramów i tabel
 Name:		tcm
 Version:	2.20
-Release:	4
+Release:	5
 License:	GPL
 Group:		Development/Tools
 Source0:	ftp://ftp.cs.utwente.nl/pub/tcm/%{name}-%{version}.src.tar.gz
@@ -122,6 +122,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc CHANGELOG FILEMAP README
 %doc doc/usersguide* doc/wishlist
 %attr(755,root,root) %{_bindir}/*
+%dir %{_sysconfdir}/%{name}
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/*
 %dir %{_datadir}/%{name}
 %dir %{_datadir}/%{name}/help

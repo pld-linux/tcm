@@ -23,7 +23,7 @@ URL:		http://wwwhome.cs.utwente.nl/~tcm/
 BuildRequires:	flex
 BuildRequires:	libstdc++-devel
 # don't use lesstif here, as it's known to cause problems
-BuildRequires:	openmotif-devel
+BuildRequires:	motif-devel
 BuildRequires:	xorg-lib-libXt-devel
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXext-devel
